@@ -21,8 +21,7 @@ window.addEventListener('load', function() {
         return;
       }
       localStorage.setItem('id_token', authResult.idToken);
-      // Display user information
-      show_profile_info(profile);
+   
     });
   });
 
@@ -34,8 +33,6 @@ window.addEventListener('load', function() {
         if (err) {
           return alert('There was an error getting the profile: ' + err.message);
         }
-        // Display user information
-        show_profile_info(profile);
       });
     }
   };

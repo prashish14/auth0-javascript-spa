@@ -15,9 +15,7 @@ window.addEventListener('load', function() {
   lock.on("authenticated", function(authResult) {
     lock.getProfile(authResult.idToken, function (err, profile) {
       if (err) {
-        // Remove expired token (if any)
         localStorage.removeItem('id_token');
-        // Remove expired profile (if any)
         localStorage.removeItem('profile');
         return alert('There was an error getting the profile: ' + err.message);
       } else {
@@ -27,7 +25,6 @@ window.addEventListener('load', function() {
       }
     });
   });
-
   var isAdmin = function(profile) {
     if (profile &&
         profile.app_metadata &&
@@ -38,7 +35,6 @@ window.addEventListener('load', function() {
        return false;
     }
   };
-
   var isUser = function(profile) {
     if (profile &&
         profile.app_metadata &&
@@ -49,13 +45,11 @@ window.addEventListener('load', function() {
        return false;
     }
   };
-
   var route = function() {
     var id_token = localStorage.getItem('id_token');
     var current_location = window.location.pathname;
     if (id_token) {
       var profile = JSON.parse(localStorage.getItem('profile'));
-
       switch(current_location) {
         case "/":
           hide(document.getElementById('btn-login'));
@@ -89,20 +83,16 @@ window.addEventListener('load', function() {
       }
     }
   };
-
   var logout = function() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
     window.location.href = "/";
   };
-
   var hide = function(element) {
     element.style.display = "none";
   };
-
   var show = function(element) {
     element.style.display = "inline-block";
   };
-
   route();
 });
